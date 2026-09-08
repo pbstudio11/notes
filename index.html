@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notes</title>
+  <title>速記雲端 NoteShare - 多語言跨平台雲端筆記庫</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
@@ -43,36 +43,35 @@
   <!-- Top Navigation Bar (Pastel Theme) -->
   <header class="bg-[#efe8d8] border-b border-stone-300/70 sticky top-0 z-30 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <!-- Logo -->
+      <!-- Logo & Clean Title -->
       <div class="flex items-center space-x-3 cursor-pointer" id="logoHeaderBtn">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-400 to-pink-300 flex items-center justify-center shadow-md shadow-purple-200">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-500 to-pink-400 flex items-center justify-center shadow-md shadow-purple-200">
           <i class="fa-solid font-bold text-white text-lg fa-paste"></i>
         </div>
         <div>
-          <h1 class="text-lg font-bold text-purple-900 flex items-center gap-2">
+          <h1 class="text-xl font-bold text-purple-900 flex items-center gap-2">
             Notes
-            <span id="cloudStatusBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-amber-200 text-amber-900 font-normal">
-              <i class="fa-solid fa-spinner fa-spin mr-1"></i>雲端連線中
+            <span id="cloudStatusBadge" class="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium border border-emerald-300">
+              <i class="fa-solid fa-check mr-1"></i>已準備就緒
             </span>
           </h1>
-          <p class="text-xs text-stone-600 hidden sm:block">(支援雲端與離線暫存)</p>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="flex items-center space-x-3">
-        <!-- Multi-language UTF-8 badge -->
-        <span id="storageModeBadge" class="hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-300">
-          <i class="fa-solid fa-cloud-check mr-1.5"></i> 實時雲端資料庫
+        <!-- Storage mode status badge -->
+        <span id="storageModeBadge" class="hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800 border border-purple-300">
+          <i class="fa-solid fa-database mr-1.5"></i> 極速儲存模式
         </span>
 
-        <!-- Password Lock Button -->
+        <!-- Password Lock Button (Single Master Admin Password) -->
         <button id="pwSettingsBtn" class="inline-flex items-center px-3 py-2 bg-amber-200 hover:bg-amber-300 active:bg-amber-400 text-amber-900 font-medium text-xs rounded-lg transition-all border border-amber-300/80">
-          <i class="fa-solid fa-key mr-1.5"></i><span id="pwStatusText">管理密碼</span>
+          <i class="fa-solid fa-key mr-1.5"></i><span id="pwStatusText">管理員密碼</span>
         </button>
 
-        <button id="newNoteBtn" class="inline-flex items-center px-4 py-2 bg-purple-500 hover:bg-purple-600 active:bg-purple-700 text-white font-medium text-sm rounded-lg transition-all shadow-md shadow-purple-300/40">
-          <i class="fa-solid fa-plus mr-2"></i>貼上新筆記
+        <button id="newNoteBtn" class="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 active:bg-purple-800 text-white font-medium text-sm rounded-lg transition-all shadow-md shadow-purple-300/40">
+          <i class="fa-solid fa-plus mr-2"></i>新增筆記
         </button>
       </div>
     </div>
@@ -234,32 +233,24 @@
           <i class="fa-solid fa-shield-halved"></i>
         </div>
         <div>
-          <h3 id="pwModalTitle" class="font-bold text-stone-800 text-base">需要管理密碼驗證</h3>
-          <p id="pwModalDesc" class="text-xs text-stone-500">請輸入管理密碼以執行此操作</p>
+          <h3 id="pwModalTitle" class="font-bold text-stone-800 text-base">需要管理員密碼</h3>
+          <p class="text-xs text-stone-500">請輸入管理員密碼以繼續此操作</p>
         </div>
       </div>
 
       <!-- Password Input Area -->
       <div id="pwInputContainer">
-        <label class="block text-xs font-semibold text-stone-700 mb-1">管理密碼</label>
-        <input type="password" id="pwModalInput" placeholder="請輸入密碼" class="w-full px-4 py-2.5 bg-[#fefce8] border border-amber-300 rounded-xl text-stone-900 text-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200">
-      </div>
-
-      <!-- Notice when no password set -->
-      <div id="noPwNotice" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800 space-y-1">
-        <p class="font-semibold"><i class="fa-solid fa-circle-info mr-1"></i>尚未設定管理密碼</p>
-        <p class="text-stone-600">您可以直接執行此操作，或者點擊「設定密碼」為您的筆記庫加入安全防護。</p>
+        <input type="password" id="pwModalInput" placeholder="請輸入管理員密碼" class="w-full px-4 py-2.5 bg-[#fefce8] border border-amber-300 rounded-xl text-stone-900 text-sm focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200">
       </div>
 
       <div class="flex justify-end space-x-2 pt-2">
         <button id="closePwModalBtn" class="px-3.5 py-2 bg-stone-200 hover:bg-stone-300 text-stone-700 text-xs font-semibold rounded-lg transition-colors">取消</button>
-        <button id="setupPwDirectBtn" class="hidden px-3.5 py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold rounded-lg transition-colors">設定密碼</button>
-        <button id="confirmPwModalBtn" class="px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-lg transition-colors shadow-md">確認執行</button>
+        <button id="confirmPwModalBtn" class="px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold rounded-lg transition-colors shadow-md">驗證並執行</button>
       </div>
     </div>
   </div>
 
-  <!-- Password Settings Modal -->
+  <!-- Password Settings Modal (Set / Change Master Password) -->
   <div id="passwordSettingsModal" class="hidden fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-[#fffefb] border-2 border-purple-300 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-4">
       <div class="flex items-center space-x-3">
@@ -267,15 +258,19 @@
           <i class="fa-solid fa-key"></i>
         </div>
         <div>
-          <h3 class="font-bold text-stone-800 text-base">設定 / 修改管理密碼</h3>
-          <p class="text-xs text-stone-500">設定密碼後，發佈或刪除筆記時需輸入驗證</p>
+          <h3 class="font-bold text-stone-800 text-base">設定管理員密碼</h3>
+          <p class="text-xs text-stone-500">設定後，發佈或刪除筆記均需憑此密碼驗證</p>
         </div>
       </div>
 
-      <div class="space-y-3">
+      <div class="space-y-3 text-xs">
+        <div id="currentPwGroup" class="hidden">
+          <label class="block font-semibold text-stone-700 mb-1">現有管理員密碼</label>
+          <input type="password" id="oldPwInput" placeholder="請輸入現有密碼" class="w-full px-3.5 py-2 bg-[#fefce8] border border-amber-300 rounded-xl text-stone-900 focus:outline-none focus:border-purple-500">
+        </div>
         <div>
-          <label class="block text-xs font-semibold text-stone-700 mb-1">新管理密碼</label>
-          <input type="password" id="newPwInput" placeholder="設定新密碼 (留空代表取消密碼)" class="w-full px-4 py-2.5 bg-[#fefce8] border border-amber-300 rounded-xl text-stone-900 text-sm focus:outline-none focus:border-purple-500">
+          <label class="block font-semibold text-stone-700 mb-1">新管理員密碼</label>
+          <input type="password" id="newPwInput" placeholder="請輸入新密碼 (留空並儲存即清除密碼)" class="w-full px-3.5 py-2 bg-[#fefce8] border border-amber-300 rounded-xl text-stone-900 focus:outline-none focus:border-purple-500">
         </div>
       </div>
 
@@ -286,7 +281,7 @@
     </div>
   </div>
 
-  <!-- Firebase & LocalStorage Hybrid Integration Script -->
+  <!-- Main JavaScript Engine -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -298,23 +293,18 @@
     let cloudNotes = [];
     let currentSelectedNote = null;
     let pendingAction = null;
-    let db, auth;
-
-    // Check Firebase Config
-    let firebaseConfig = null;
-    if (typeof window.__firebase_config !== 'undefined' && window.__firebase_config) {
-      if (typeof window.__firebase_config === 'string') {
-        try {
-          firebaseConfig = JSON.parse(window.__firebase_config);
-        } catch (e) {
-          console.error("Failed to parse __firebase_config JSON:", e);
-        }
-      } else if (typeof window.__firebase_config === 'object') {
-        firebaseConfig = window.__firebase_config;
-      }
-    }
+    let db = null, auth = null;
 
     async function initSyncEngine() {
+      let firebaseConfig = null;
+      if (typeof window.__firebase_config !== 'undefined' && window.__firebase_config) {
+        try {
+          firebaseConfig = typeof window.__firebase_config === 'string' ? JSON.parse(window.__firebase_config) : window.__firebase_config;
+        } catch (e) {
+          console.warn("Firebase config parse error:", e);
+        }
+      }
+
       if (firebaseConfig && firebaseConfig.apiKey && !firebaseConfig.apiKey.includes('DemoKey')) {
         try {
           const app = initializeApp(firebaseConfig);
@@ -328,35 +318,30 @@
           }
           
           isCloudMode = true;
-          updateStatusBadge(true, "雲端已連線");
+          updateStatusBadge(true, "雲端已同步");
 
           const notesCollection = collection(db, 'artifacts', appId, 'public', 'data', 'notes');
-
           onSnapshot(notesCollection, (snapshot) => {
-            cloudNotes = snapshot.docs.map(d => ({
-              id: d.id,
-              ...d.data()
-            }));
+            cloudNotes = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
             cloudNotes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
             renderNotesList(cloudNotes);
             checkUrlHash();
           }, (error) => {
-            console.warn("Firestore error, switching to LocalStorage mode:", error);
+            console.warn("Firestore error, fallback to local storage:", error);
             switchToLocalStorageMode();
           });
           return;
         } catch (err) {
-          console.warn("Cloud connection failed, switching to LocalStorage mode:", err);
+          console.warn("Cloud connection failed, switching to local mode:", err);
         }
       }
       
-      // Fallback to LocalStorage mode for standalone GitHub Pages / Local deployment
       switchToLocalStorageMode();
     }
 
     function switchToLocalStorageMode() {
       isCloudMode = false;
-      updateStatusBadge(false, "離線快取模式");
+      updateStatusBadge(false, "本地極速模式");
       loadLocalNotes();
     }
 
@@ -364,29 +349,20 @@
       const badge = document.getElementById('cloudStatusBadge');
       const storageBadge = document.getElementById('storageModeBadge');
       
-      if (!badge) return;
-
-      if (online) {
-        badge.className = "text-[10px] px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900 font-normal";
-        badge.innerHTML = `<i class="fa-solid fa-wifi mr-1"></i>${msg}`;
-        if (storageBadge) {
-          storageBadge.className = "hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 border border-emerald-300";
-          storageBadge.innerHTML = `<i class="fa-solid fa-cloud-check mr-1.5"></i> 實時雲端資料庫`;
-        }
-      } else {
-        badge.className = "text-[10px] px-2 py-0.5 rounded-full bg-amber-200 text-amber-900 font-normal";
-        badge.innerHTML = `<i class="fa-solid fa-hard-drive mr-1"></i>${msg}`;
-        if (storageBadge) {
-          storageBadge.className = "hidden md:inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-300";
-          storageBadge.innerHTML = `<i class="fa-solid fa-box-archive mr-1.5"></i> 本地快速儲存`;
-        }
+      if (badge) {
+        badge.className = online 
+          ? "text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-medium border border-emerald-300"
+          : "text-[10px] px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 font-medium border border-amber-300";
+        badge.innerHTML = `<i class="fa-solid ${online ? 'fa-cloud' : 'fa-bolt'} mr-1"></i>${msg}`;
+      }
+      if (storageBadge) {
+        storageBadge.innerHTML = `<i class="fa-solid ${online ? 'fa-cloud-check' : 'fa-hard-drive'} mr-1.5"></i> ${online ? '雲端資料庫' : '本地極速儲存'}`;
       }
     }
 
-    // LocalStorage Operations
     function getLocalNotesFromStorage() {
       try {
-        const raw = localStorage.getItem('noteshare_notes_data');
+        const raw = localStorage.getItem('notes_app_data');
         return raw ? JSON.parse(raw) : getInitialDefaultNotes();
       } catch(e) {
         return getInitialDefaultNotes();
@@ -396,9 +372,9 @@
     function getInitialDefaultNotes() {
       return [
         {
-          id: 'sample-1',
-          title: '歡迎使用 NoteShare 雲端筆記',
-          content: '歡迎！這是你的第一份筆記。\n本系統支援繁簡中文、廣東話、英文及日本語，並且保證不會出現亂碼。\n你可以在此貼上、編輯，並透過連結分享給朋友！',
+          id: 'note-welcome-1',
+          title: '歡迎使用 Notes',
+          content: '這是你的第一份筆記！\n隨時在此貼上文字、會議紀錄、程式碼或隨手記，並點擊右上方「複製分享連結」即可傳給朋友。',
           language: '中文/通用',
           createdAt: Date.now()
         }
@@ -406,7 +382,7 @@
     }
 
     function saveLocalNotesToStorage(notes) {
-      localStorage.setItem('noteshare_notes_data', JSON.stringify(notes));
+      localStorage.setItem('notes_app_data', JSON.stringify(notes));
     }
 
     function loadLocalNotes() {
@@ -417,17 +393,26 @@
     }
 
     function getAdminPassword() {
-      return localStorage.getItem('noteshare_admin_pw') || '';
+      return localStorage.getItem('notes_admin_master_pw') || '';
     }
 
     function updatePasswordBadge() {
       const pw = getAdminPassword();
       const txt = document.getElementById('pwStatusText');
-      if (txt) txt.textContent = pw ? '已設密碼 🔒' : '管理密碼';
+      if (txt) txt.textContent = pw ? '已設管理員密碼 🔒' : '管理員密碼';
     }
 
     function openPasswordSettingsModal() {
-      document.getElementById('newPwInput').value = getAdminPassword();
+      const currentPw = getAdminPassword();
+      const currentGroup = document.getElementById('currentPwGroup');
+      document.getElementById('oldPwInput').value = '';
+      document.getElementById('newPwInput').value = '';
+
+      if (currentPw) {
+        currentGroup.classList.remove('hidden');
+      } else {
+        currentGroup.classList.add('hidden');
+      }
       document.getElementById('passwordSettingsModal').classList.remove('hidden');
     }
 
@@ -436,48 +421,41 @@
     }
 
     function saveAdminPassword() {
-      const newPw = document.getElementById('newPwInput').value.trim();
-      if (newPw) {
-        localStorage.setItem('noteshare_admin_pw', newPw);
-        showToast("密碼已設定", "已成功設定管理密碼！發佈及刪除筆記時需驗證。");
+      const currentPw = getAdminPassword();
+      const oldPwInput = document.getElementById('oldPwInput').value.trim();
+      const newPwInput = document.getElementById('newPwInput').value.trim();
+
+      if (currentPw && oldPwInput !== currentPw) {
+        showToast("驗證失敗", "現有管理員密碼不正確！");
+        return;
+      }
+
+      if (newPwInput) {
+        localStorage.setItem('notes_admin_master_pw', newPwInput);
+        showToast("密碼已更新", "管理員密碼已成功設定！");
       } else {
-        localStorage.removeItem('noteshare_admin_pw');
-        showToast("密碼已取消", "已清除管理密碼防護。");
+        localStorage.removeItem('notes_admin_master_pw');
+        showToast("密碼已清除", "已取消管理員密碼保護。");
       }
       updatePasswordBadge();
       closePasswordSettingsModal();
     }
 
-    function requirePasswordCheck(actionCallback, actionName) {
-      const currentPw = getAdminPassword();
-      pendingAction = actionCallback;
-
-      document.getElementById('pwModalTitle').textContent = actionName || '需要管理密碼驗證';
+    function requireAdminPermission(actionCallback, actionName) {
+      const masterPw = getAdminPassword();
       
-      const inputContainer = document.getElementById('pwInputContainer');
-      const noPwNotice = document.getElementById('noPwNotice');
-      const setupBtn = document.getElementById('setupPwDirectBtn');
-      const confirmBtn = document.getElementById('confirmPwModalBtn');
-
-      if (!currentPw) {
-        // No password set yet -> Show notice & direct execute button
-        inputContainer.classList.add('hidden');
-        noPwNotice.classList.remove('hidden');
-        setupBtn.classList.remove('hidden');
-        confirmBtn.textContent = '直接執行';
-      } else {
-        // Password is set -> Show input box
-        inputContainer.classList.remove('hidden');
-        noPwNotice.classList.add('hidden');
-        setupBtn.classList.add('hidden');
-        confirmBtn.textContent = '確認驗證';
-        document.getElementById('pwModalInput').value = '';
+      // If NO admin password is set, execute directly without bothering the user!
+      if (!masterPw) {
+        actionCallback();
+        return;
       }
 
+      // If master password IS set, prompt for verification
+      pendingAction = actionCallback;
+      document.getElementById('pwModalTitle').textContent = actionName || '需要管理員密碼';
+      document.getElementById('pwModalInput').value = '';
       document.getElementById('passwordModal').classList.remove('hidden');
-      if (currentPw) {
-        setTimeout(() => document.getElementById('pwModalInput').focus(), 100);
-      }
+      setTimeout(() => document.getElementById('pwModalInput').focus(), 100);
     }
 
     function closePasswordModal() {
@@ -486,28 +464,89 @@
     }
 
     function submitPasswordCheck() {
-      const currentPw = getAdminPassword();
+      const masterPw = getAdminPassword();
+      const inputPw = document.getElementById('pwModalInput').value.trim();
 
-      if (!currentPw) {
-        // No password required
+      if (inputPw === masterPw) {
+        const action = pendingAction;
         closePasswordModal();
-        if (pendingAction) {
-          pendingAction();
-          pendingAction = null;
-        }
+        if (action) action();
+      } else {
+        showToast("密碼錯誤", "請輸入正確的管理員密碼！");
+      }
+    }
+
+    function saveAndShareNote() {
+      const titleInput = document.getElementById('noteTitleInput').value.trim();
+      const contentInput = document.getElementById('noteContentInput').value.trim();
+      const langSelect = document.getElementById('noteLanguage').value;
+
+      if (!contentInput) {
+        showToast("提示", "請輸入筆記內容！");
         return;
       }
 
-      const inputPw = document.getElementById('pwModalInput').value.trim();
-      if (inputPw === currentPw) {
-        closePasswordModal();
-        if (pendingAction) {
-          pendingAction();
-          pendingAction = null;
+      const performSave = async () => {
+        const docData = {
+          title: titleInput || '無標題筆記',
+          content: contentInput,
+          language: langSelect,
+          createdAt: Date.now()
+        };
+
+        let savedNote = null;
+
+        if (isCloudMode && auth?.currentUser) {
+          try {
+            const notesCollection = collection(db, 'artifacts', appId, 'public', 'data', 'notes');
+            const docRef = await addDoc(notesCollection, docData);
+            savedNote = { id: docRef.id, ...docData };
+          } catch (e) {
+            console.warn("Cloud save error, falling back to local storage:", e);
+          }
         }
-      } else {
-        showToast("密碼錯誤", "請輸入正確的管理密碼！");
-      }
+
+        if (!savedNote) {
+          savedNote = { id: 'note-' + Date.now(), ...docData };
+          cloudNotes.unshift(savedNote);
+          saveLocalNotesToStorage(cloudNotes);
+        }
+
+        displayNoteView(savedNote);
+        copyShareLink();
+        showToast("成功儲存", "筆記已成功發佈，專屬網址已複製！");
+      };
+
+      requireAdminPermission(performSave, "發佈筆記驗證");
+    }
+
+    async function deleteNoteById(id) {
+      const performDelete = async () => {
+        try {
+          if (isCloudMode && auth?.currentUser) {
+            try {
+              const noteDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'notes', id);
+              await deleteDoc(noteDocRef);
+            } catch (err) {
+              console.warn("Cloud delete failed, deleting locally:", err);
+            }
+          }
+          
+          cloudNotes = cloudNotes.filter(n => n.id !== id);
+          saveLocalNotesToStorage(cloudNotes);
+          renderNotesList(cloudNotes);
+
+          if (currentSelectedNote && currentSelectedNote.id === id) {
+            resetToNewNote();
+          }
+          showToast("已刪除", "筆記已成功移除！");
+        } catch (err) {
+          console.error("Delete error:", err);
+          showToast("錯誤", "刪除時出錯，請重試");
+        }
+      };
+
+      requireAdminPermission(performDelete, "刪除筆記驗證");
     }
 
     function updateCharCount() {
@@ -521,16 +560,16 @@
       const langSelect = document.getElementById('noteLanguage');
 
       if (lang === 'zh') {
-        titleInput.value = '廣東話及繁體中文範例';
-        contentInput.value = '歡迎使用雲端筆記分享網！\n這裏支援貼上各種中文（廣東話口語、繁體中文、簡體中文）。\n貼上之後發佈，筆記會即時儲存並產生專屬連結，其他人打開即可完整讀取，完全不會出現亂碼！';
+        titleInput.value = '廣東話及繁體中文筆記';
+        contentInput.value = '歡迎使用 Notes！\n這裏支援貼上各種中文（廣東話口語、繁體中文、簡體中文）。\n貼上之後發佈，筆記會即時儲存並產生專屬連結！';
         langSelect.value = '中文/通用';
       } else if (lang === 'ja') {
-        titleInput.value = '日本語のテキストサンプル';
-        contentInput.value = 'こんにちは！このウェブサイトは日本語の文字（ひらがな、カタカナ、漢字）も完璧にサポートしています。\nデータが保存され、他の方と共有してコピーできます。\n\n【例文】\n明日7時に駅の改札前で待ち合わせしましょう。よろしくお願いいたします！';
+        titleInput.value = '日本語のメモサンプル';
+        contentInput.value = 'こんにちは！日本語の文字（ひらがな、カタカナ、漢字）も完璧にサポートしています。\nデータが即座に保存されます。';
         langSelect.value = '日本語';
       } else if (lang === 'en') {
-        titleInput.value = 'English Code & Note Sample';
-        contentInput.value = 'Hello world!\nThis cloud snippet tool provides real-time multi-language rendering for English, CJK languages, and code blocks.\n\nfunction greet(name) {\n    console.log(`Hello, ${name}!`);\n}\ngreet("NoteShare User");';
+        titleInput.value = 'English Code & Note';
+        contentInput.value = 'Hello world!\nThis snippet tool provides instant note saving.\n\nfunction greet() {\n    console.log("Hello from Notes!");\n}';
         langSelect.value = 'English';
       }
       updateCharCount();
@@ -594,7 +633,6 @@
               </div>
             </div>
 
-            <!-- Delete Button -->
             <button data-id="${note.id}" class="delete-note-btn absolute top-2 right-2 w-6 h-6 rounded-full bg-rose-100 hover:bg-rose-200 text-rose-600 flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity" title="刪除筆記">
               <i class="fa-solid fa-trash-can text-[10px]"></i>
             </button>
@@ -602,48 +640,16 @@
         `;
       }).join('');
 
-      // Attach click events
       container.querySelectorAll('.note-item-btn').forEach(el => {
-        el.addEventListener('click', () => {
-          const id = el.getAttribute('data-id');
-          selectNoteById(id);
-        });
+        el.addEventListener('click', () => selectNoteById(el.getAttribute('data-id')));
       });
 
       container.querySelectorAll('.delete-note-btn').forEach(el => {
         el.addEventListener('click', (e) => {
           e.stopPropagation();
-          const id = el.getAttribute('data-id');
-          promptDeleteNote(id);
+          deleteNoteById(el.getAttribute('data-id'));
         });
       });
-    }
-
-    function promptDeleteNote(id) {
-      requirePasswordCheck(() => {
-        deleteNoteById(id);
-      }, "刪除筆記確認");
-    }
-
-    async function deleteNoteById(id) {
-      try {
-        if (isCloudMode && auth.currentUser) {
-          const noteDocRef = doc(db, 'artifacts', appId, 'public', 'data', 'notes', id);
-          await deleteDoc(noteDocRef);
-        } else {
-          cloudNotes = cloudNotes.filter(n => n.id !== id);
-          saveLocalNotesToStorage(cloudNotes);
-          renderNotesList(cloudNotes);
-        }
-
-        if (currentSelectedNote && currentSelectedNote.id === id) {
-          resetToNewNote();
-        }
-        showToast("已刪除", "筆記已成功移除！");
-      } catch (err) {
-        console.error("Failed to delete note:", err);
-        showToast("錯誤", "刪除筆記失敗，請重試");
-      }
     }
 
     function filterNotes() {
@@ -662,18 +668,13 @@
 
     function displayNoteView(note) {
       currentSelectedNote = note;
-
-      // Populate ViewerView
       document.getElementById('viewNoteTitle').textContent = note.title || '無標題筆記';
       document.getElementById('viewNoteContent').textContent = note.content || '';
       document.getElementById('viewNoteLang').textContent = note.language || '通用';
       document.getElementById('viewNoteTime').innerHTML = `<i class="fa-regular fa-clock mr-1"></i>${formatDate(note.createdAt)}`;
       document.getElementById('viewCharCount').innerHTML = `<i class="fa-solid fa-font mr-1"></i>${(note.content || '').length} 字數`;
 
-      // Update URL hash
       window.location.hash = 'id=' + note.id;
-
-      // Switch view
       document.getElementById('editorView').classList.add('hidden');
       document.getElementById('viewerView').classList.remove('hidden');
       renderNotesList(cloudNotes);
@@ -681,64 +682,19 @@
 
     function selectNoteById(id) {
       const note = cloudNotes.find(n => n.id === id);
-      if (note) {
-        displayNoteView(note);
-      }
-    }
-
-    function saveAndShareNote() {
-      const titleInput = document.getElementById('noteTitleInput').value.trim();
-      const contentInput = document.getElementById('noteContentInput').value.trim();
-      const langSelect = document.getElementById('noteLanguage').value;
-
-      if (!contentInput) {
-        showToast("提示", "請輸入或貼上筆記內容！");
-        return;
-      }
-
-      const performSave = async () => {
-        try {
-          const docData = {
-            title: titleInput || '無標題筆記',
-            content: contentInput,
-            language: langSelect,
-            createdAt: Date.now()
-          };
-
-          if (isCloudMode && auth.currentUser) {
-            const notesCollection = collection(db, 'artifacts', appId, 'public', 'data', 'notes');
-            const docRef = await addDoc(notesCollection, docData);
-            const newNote = { id: docRef.id, ...docData };
-            displayNoteView(newNote);
-          } else {
-            const newNote = { id: 'note-' + Date.now(), ...docData };
-            cloudNotes.unshift(newNote);
-            saveLocalNotesToStorage(cloudNotes);
-            displayNoteView(newNote);
-          }
-
-          copyShareLink();
-          showToast("發佈成功", "筆記已儲存，專屬分享網址已複製！");
-        } catch (err) {
-          console.error("Save note error:", err);
-          showToast("儲存失敗", "寫入筆記時出錯，請重試");
-        }
-      };
-
-      requirePasswordCheck(performSave, "發佈筆記安全驗證");
+      if (note) displayNoteView(note);
     }
 
     function copyCurrentNoteContent() {
       if (!currentSelectedNote) return;
       copyToClipboard(currentSelectedNote.content);
-      showToast("已複製全文", "筆記內容已成功複製到剪貼簿！");
+      showToast("已複製全文", "筆記內容已複製到剪貼簿！");
     }
 
     function copyShareLink() {
       if (!currentSelectedNote) return;
-      const shareUrl = window.location.href;
-      copyToClipboard(shareUrl);
-      showToast("連結已複製", "任何人打開此網址即可即時讀取此筆記！");
+      copyToClipboard(window.location.href);
+      showToast("連結已複製", "任何人打開此網址即可讀取筆記！");
     }
 
     function copyToClipboard(text) {
@@ -756,9 +712,7 @@
         if (hash.startsWith('id=')) {
           const noteId = hash.replace('id=', '');
           const note = cloudNotes.find(n => n.id === noteId);
-          if (note) {
-            displayNoteView(note);
-          }
+          if (note) displayNoteView(note);
         }
       }
     }
@@ -787,10 +741,6 @@
 
       document.getElementById('closePwModalBtn').addEventListener('click', closePasswordModal);
       document.getElementById('confirmPwModalBtn').addEventListener('click', submitPasswordCheck);
-      document.getElementById('setupPwDirectBtn').addEventListener('click', () => {
-        closePasswordModal();
-        openPasswordSettingsModal();
-      });
 
       document.getElementById('noteContentInput').addEventListener('input', updateCharCount);
       document.getElementById('searchInput').addEventListener('input', filterNotes);
