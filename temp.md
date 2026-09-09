@@ -37,3 +37,33 @@ print(x)
 = print 6
 
 
+
+
+
+
+
+1. 在 Flet App 裡面想顯示文字，卻用了 print()
+在 Flet 介面開發中，print(msg) 只會把文字印在底部看不見的 Terminal 終端機，而不會顯示在 App 畫面上！
+
+如果在 Flet 中要顯示文字：你應該建立 ft.Text 元件並加入 page，而不是用 print()：
+
+
+import flet as ft
+
+def main(page: ft.Page):
+    # Flet 顯示文字的方式：
+    def say(msg):
+        page.add(ft.Text(msg))  # 👈 顯示在 App 畫面上
+
+    say("Hello Flet!")
+
+ft.app(target=main)
+
+
+2. 呼叫時忘記傳入參數
+say(msg) 需要傳入一個參數，如果你呼叫時沒給參數（例如只寫 say()），Python 會報錯 TypeError: say() missing 1 required positional argument: 'msg'。
+
+
+
+
+
