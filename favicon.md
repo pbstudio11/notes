@@ -77,6 +77,71 @@ if failed, old version or etc, can use:
 
 
 
+Icon web information:
+
+1. Iconify (icon-sets.iconify.design)
+
+數量：超過 200,000 個以上的開源圖示。
+
+特點：它整合了幾乎所有知名的開源圖標集（例如 Material Design、FontAwesome、Bootstrap Icons、Lucide 等）。
+
+用法：入面有大量電子書、書本、閱讀器相關嘅圖標。你可以直接在網站搜尋「book」或「reading」，點選喜歡的圖標後，它會提供可以直接用的圖片網址或 PNG 下載選項。
+
+
+
+2. Flaticon (www.flaticon.com)
+
+數量：數以百萬計的向量圖與 Icon。
+
+特點：全世界最大的免費 icon 搜尋引擎之一。只要在搜尋欄打「book」、「epub」或者「reader」，就會彈出幾萬個唔同設計風格（手繪、扁平化、霓虹、極簡）嘅書本 icon。
+
+用法：揀中邊個就可以直接免費下載成 PNG 格式（有 16x16、32x32、64x64 等尺寸），非常適合拿來解決 iOS 舊版本支援的問題。
+
+
+3. IconScout (iconscout.com)
+
+數量：數十萬個免費 Icon、3D 插圖與動態圖標。
+
+特點：介面非常現代化，支援一鍵下載 PNG、SVG 格式，甚至可以線上直接修改 icon 的顏色。
+
+
+💡 點樣用呢啲網站嘅 PNG 救星方法？
+去 Flaticon 或 Iconify 搵一個你最鍾意嘅書本 icon。
+
+下載它的 PNG 檔案（例如命名為 my-book.png）。
+
+放到你網頁嘅資料夾入面。
+
+喺 HTML 嘅 <head> 裡面加入以下呢行（支援所有包括 iOS 15.6 在內的舊版 Safari）：
+
+
+<link rel="apple-touch-icon" href="my-book.png">
+<link rel="icon" type="image/png" href="my-book.png">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
