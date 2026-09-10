@@ -66,4 +66,11 @@ say(msg) 需要傳入一個參數，如果你呼叫時沒給參數（例如只�
 
 
 
+經典直覺 Emoji 書本 (📚)
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23f1f5f9%22/><text x=%2250%22 y=%2270%22 font-size=%2262%22 text-anchor=%22middle%22>📚</text></svg>">
+
+
+
+
 
