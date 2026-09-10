@@ -49,4 +49,42 @@
 
 
 
+if failed, old version or etc, can use:
+
+方法一：用 PNG 圖片代替（最穩陣）
+如果你有一張細嘅書本 PNG 圖（例如 180x180 或 32x32 像素，命名為 favicon.png），將檔案同網頁放喺同一資料夾，然後喺 <head> 裡面加入下面兩行：
+
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+
+點解有效：舊版 iOS Safari 對 .png 格式嘅支援非常完整，特別是配合 apple-touch-icon，無論係加入書籤定係擺落主畫面，都會直接讀取呢張 PNG。
+
+
+
+方法二：暫時用「Emoji 網址」當作圖片引入
+如果你手頭真係冇 PNG 圖，又唔想煩整檔案，可以借用網上現成嘅 Emoji 轉圖服務（例如 sapi.is 或其他 favicon 產生器），把 📚 轉成 PNG 連結：
+
+
+<link rel="apple-touch-icon" href="https://api.iconify.design/fluent-emoji:books.svg?format=png">
+
+
+(你也可以把上面這行直接貼進 <head> 試試看舊版 Safari 會不會抓取這個遠端 PNG 連結)
+
+💡 實測時必須注意：
+因為 iOS Safari 的快取（Cache）極度頑固，你每次修改完程式碼之後，必須要把 Safari 整個從背景強制關閉（上滑清除），然後重新開機或重新打開 Safari，先至有機會重新整理出個 icon。如果試咗 PNG 都唔得，通常就真係受限於 iOS 15.6 嘅系統瀏覽器版本上限。
+
+
+
+
+
+
+
+
+
+
+
+
+
 
